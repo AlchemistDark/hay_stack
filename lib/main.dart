@@ -58,31 +58,67 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(text: "рас"),
+              Tab(text: "тфа"),
+              Tab(text: "тры"),
+            ],
+          ),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Вы сказали 'Халоу Ворлд' раз:",
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        label: Text("Сказать 'Халоу Ворлд'"),
-      ),
+        body: TabBarView(
+          children: [
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Вы сказали 'Халоу Ворлд' раc:"),
+                  Text(
+                   '$_counter',
+                   style: Theme.of(context).textTheme.headline4
+                  )
+                ]
+              )
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Вы сказали 'Халоу Ворлд' тфа:"),
+                  Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Вы сказали 'Халоу Ворлд' тры:"),
+                  Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
+            )
+          ]
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          label: Text("Сказать 'Халоу Ворлд'"),
+        ),
+      )
     );
   }
 }
