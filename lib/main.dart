@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:haystack/haystack.dart';
 //import 'package:haystack/haystack.dart';
 import 'package:haystack_client/haystack_client.dart';
 
 void main() async {
   HSkySparkClient hSSC = HSkySparkClient('http://192.168.1.18:8080/api/demo/', 'su', 'su');
   //await hSSC.open();
-  hSSC.eval("readAll(site)");
-  print(hSSC.eval("readAll(site)"));
-  hSSC.eval("read(point and his).hisRead(lastWeek)");
-  print(hSSC.eval("read(point and his).hisRead(lastWeek)"));
   runApp(MyApp(hSSC));
 }
 
@@ -32,6 +29,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   late final HSkySparkClient hSSC;
+
   MyHomePage(this.hSSC, {Key? key, required this.title}) : super(key: key);
 
   final String title;
@@ -46,10 +44,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _MyHomePageState(this.hSSC);
 
-  void _incrementCounter() {
+  void _incrementCounter()  async {
+    HGrid hGrid = await hSSC.eval("readById(@p:demo:r:29f46b5c-60923dad)");
+    for (dynamic i in hGrid){
+      //for (var j in i) {
+        print("этто $i");
+      //}
+    }
     setState(() {
       _counter++;
-      print('ghbyn ${hSSC.eval("readAll(site)")}');
     });
   }
 
